@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Average Result</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="playerAverage: ${averageResults}" >
+    <td th:text ="${playerAverage.getName()}"></td>
+    <td th:text ="${playerAverage.getAverageScore()}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
