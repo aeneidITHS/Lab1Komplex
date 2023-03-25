@@ -24,7 +24,7 @@ public class Results {
     public Long getId() {
         return id;
     }
-    public void getAndIncrement(){
-        ++result;
+    public int getAndIncrement(){
+        return ++result;
     }
 }

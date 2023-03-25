@@ -16,15 +16,15 @@ public class GameController {
 
     @PostMapping("/login")
     public String login(@RequestParam("name") String pname, Model m){
+        m.addAttribute("name",pname);
         m.addAttribute("person",gameService.login(pname));
         return "gamePage";
     }
 
     @PostMapping("/game")
     String guessing(@RequestParam("guess") int guess,Model m) {
-        gameService.makeGuess(guess);
-        boolean gameOver = gameService.isGameDone();
         m.addAttribute("answer",gameService.makeGuess(guess));
+        boolean gameOver = gameService.isGameDone();
         m.addAttribute("gameOver",gameOver?"You won!":"Wrong Guess!");
         return "gamePage";
     }

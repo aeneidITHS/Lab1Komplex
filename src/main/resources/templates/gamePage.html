@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+
+    <title>
+        Welcome
+    </title>
 </head>
 <body>
+Current User logged in:
+<p th:text="${name}"></p>
+
+
 Please Enter a number:
 <form action="/game" method="post">
   Guess:<input type="guess" size="8" name="guess">
@@ -14,7 +21,7 @@ Please Enter a number:
 <p th:text="${answer}"
 ></p>
 <p th:text ="${gameOver}"></p>
-<a href="/result">Show Result</a>
+<a href="/results">Show Result</a>
 <a href="/login"> Back to Login page</a>
 </body>
 </html>

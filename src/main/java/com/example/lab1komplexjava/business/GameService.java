@@ -15,13 +15,12 @@ import java.util.Random;
 public class GameService {
     @Autowired
     PlayerRepository playRep;
-
     Player player;
     Results results;
     Random random = new Random();
     private List<String> replies;
     private int secret;
-    private boolean gameDone;
+    private boolean gameDone = false;
 
     private void init() {
         secret = random.nextInt(1,11);
@@ -46,20 +45,24 @@ public class GameService {
     public String makeGuess(int guess) {
 
         if (guess < secret) {
-            results.getAndIncrement();
-            return "Too Low!";
+            return "Too Low," + " this is your " +  results.getAndIncrement() + " try!";
         } else if (guess > secret) {
-            results.getAndIncrement();
-            return "Too high!";
+            return "Too high!" + " this is your " +  results.getAndIncrement()+ " try!";
         } else {
             player.addResult(results);
-            gameDone = true;
+            System.out.println("Passed check 1");
             playRep.save(player);
-           return  "Just Right!";
+            System.out.println("Passed check 2");
+            gameDone = true;
+            return  "Just Right," + " it took " + results.getResult() + " tries!";
         }
     }
     public GameService(){
         init();
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public Player login(String user){
@@ -78,6 +81,7 @@ public class GameService {
     }
 
     public boolean isGameDone() {
+        init();
         return gameDone;
     }
 }
